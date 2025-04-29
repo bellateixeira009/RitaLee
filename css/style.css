@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+body{
+    color: #fff;
+    background-color: black;
+}
+header{
+    background-color: #a57c62;
+    padding: 15px 30px ;
+    width: 100%;
+    position: fixed; /*Fixa o header no topo da página, mesmo quando o usuário rola o conteúdo.*/
+    z-index: 1000; /*Define a camada em que o header vai aparecer. Como o número é alto (1000), ele vai ficar acima da maioria dos outros elementos*/
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+nav ul li{
+    margin-left: 20px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+a:hover{
+    font-size: 1.2em;
+    text-shadow: 4px 5px 3px #7c1527;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.container{ 
+    max-width: 1200px; /*limita a largura máxima*/
+    margin: auto; /*centraliza o container*/
+    padding: 20px; /*adiciona espaçamento interno*/
+}
+#inicio {
+    padding-top: 150px;
+}
+.banner {
+    background: url(../img/bannerrita.jpg) no-repeat /*a imagem não se repete*/ center/cover /*faz distrubuição da imagem para ocupar todo o espaço*/;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2em;
+    text-shadow: 4px 5px 3px #7c1527;
+}
+
+#biografia{
+    padding: 35px;
+    color: #a57c62;
+}
+.biocontainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    max-width: 1400px; /*limita a largura*/
+    margin: auto;
+}
+.biotexto{
+    flex: 1;
+    padding: 20px;
+}
+.biotexto h1{
+    font-size: 1.7em;
+    color: #fff;
+    text-shadow: 4px 5px 3px #7c1527;
+}
+.biotexto p{
+    font-size: 1.2em;
+    line-height: 1.5em; 
+    text-align: justify;
+}
+.hex-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    flex: 1; /*ocupa o mesmo espaço horizontal que o texto*/
+}
+.hex{
+    width: 140px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); /*serve para recortar um elemento*/
+    overflow: hidden;
+    position: relative;
+}
+
+.hex img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+footer{
+    background-color: #a57c62;
+}
+
+@media (max-width:675px){
+    header .container, .biocontainer{
+        flex-direction: column;
+        text-align: center;
+    }
+    nav ul {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+    #inicio{
+        padding-top: 200px;
+        font-size: 1.2em;
+    }
+    .banner{
+        height: 700px;
+    }
+
+
+
+}

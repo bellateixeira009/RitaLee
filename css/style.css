@@ -107,6 +107,43 @@ header .container {
     height: 100%;
     object-fit: cover;
 }
+#discografia h1{
+    font-size: 1.7em;
+    color: #fff;
+    text-shadow: 4px 5px 3px #db1b7b;
+    text-align: center;
+}
+#discografia .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 60px;
+    text-align: center;
+    padding: 50px 70px;
+}
+#discografia .item{
+    background-color: #a57c62;
+    border: 5px inset #db1b7b;
+    border-radius: 8px;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 8px 8px 15px #db1b7b;
+    transition: transform 0.2s ease, box-shadow 0.2 ease;
+    cursor: pointer;
+}
+#discografia .item:hover{
+    transform: translateY(-5px);
+    box-shadow: 15px 8px 15px #e6bea5;
+    border: 5px outset #e6bea5;
+}
+#discografia .item:active{
+    transform: scale(0.98);
+    box-shadow: none;
+    border: 9px double #e6bea5
+}
+#discografia .item p{
+    margin-top: 10px;
+}
+
 footer{
     background-color: #a57c62;
 }

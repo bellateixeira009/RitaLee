@@ -156,13 +156,9 @@ footer{
     box-shadow: 0px 4px 10px rgb(0, 0, 0, 0.1);
     margin: auto;
     text-align: center;
+    margin-top: 50px;
 }
-.card{
-    max-width: 300px;
-}
-.card h3{
-    margin-top: 0;
-}
+
 .btn{
     display: inline-block;
     margin-top: 15px;
@@ -188,12 +184,14 @@ footer{
     display: flex;
 }
 .modal-content{
+    max-height: 90vh;
+    overflow-y: auto;
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    max-width: 400px;
-    text-align: center;
     box-shadow: 0px 5px 20px rgb(0, 0, 0, 0.2);
+    max-width: 600px;
+    text-align: justify;
 }
 .close-btn{
     margin-top: 20px;
@@ -223,7 +221,13 @@ footer{
     section {
         scroll-margin-top: 250px;
     }
-
+    .modal{
+        margin-top: 100px;
+    } 
+    
+    .modal-content{
+        max-height: 60vh;
+    } 
 
 
 }

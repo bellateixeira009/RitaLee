@@ -120,8 +120,8 @@ header .container {
     height: 100%;
     object-fit: cover;
 }
-#discografia h1{
-    font-size: 1.7em;
+#discografia h1, #galeria h1{
+    font-size: 2em;
     color: #fff;
     text-shadow: 4px 5px 3px #db1b7b;
     text-align: center;
@@ -221,12 +221,26 @@ header .container {
     text-decoration: none;
 }
 
+#galeria .container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    
+}
+#galeria img{
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: 3px solid #ffffff;
+}
+
 footer{
     background-color: #a57c62;
     text-align: center;
 }
 
-@media (max-width:675px){
+@media (max-width:680px){
     header .container, .biocontainer{
         flex-direction: column;
         text-align: center;
@@ -235,12 +249,18 @@ footer{
         margin-top: 10px;
         flex-direction: column;
     }
+    nav ul li a{
+        font-size: 0.5em;
+    }
     #inicio{
         padding-top: 200px;
         font-size: 1.2em;
     }
     .banner{
-        height: 700px;
+        height: 900px;
+    }
+    .banner h1{
+        font-size: 1em;
     }
     section {
         scroll-margin-top: 250px;
@@ -251,7 +271,12 @@ footer{
     
     .modal-content{
         max-height: 60vh;
-    } 
+    }
+    #galeria .imagem img {
+        width: 80%;
+        margin: 10px;
+        border-radius: 5px ;
+    }
 
 
 }

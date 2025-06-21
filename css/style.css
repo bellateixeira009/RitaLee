@@ -273,8 +273,8 @@ footer p {
     .modal-content{
         max-height: 40vh;
     }
-    #galeria .imagem img {
-        width: 80%;
+    #galeria img {
+        width: 150px;
         margin: 10px;
         border-radius: 5px ;
     }

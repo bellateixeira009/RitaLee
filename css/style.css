@@ -313,6 +313,21 @@ footer p {
     justify-content: center;
 }
 
+body.paginamensagem {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+body.paginamensagem main {
+    flex: 1;
+  }
+  
+.mensagem{
+    margin-top: 10%;
+    background-color: aquamarine;
+  }
+
 @media (max-width:680px){
     header .container, .biocontainer{
         flex-direction: column;

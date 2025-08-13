@@ -328,6 +328,20 @@ body.paginamensagem main {
     background-color: aquamarine;
   }
 
+table, th, td{
+    border: 2px solid black;
+    margin-left: 2em;
+    margin-bottom: 4em;
+}
+
+th, td{
+    background-color: #7c1527;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    
+}
+
 @media (max-width:680px){
     header .container, .biocontainer{
         flex-direction: column;

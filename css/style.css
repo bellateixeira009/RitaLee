@@ -330,17 +330,24 @@ body.paginamensagem main {
 
 table, th, td{
     border: 2px solid black;
-    margin-left: 2em;
-    margin-bottom: 4em;
+    border-radius: 5px;
+    margin: 2em auto 4em auto;
+}
+
+.table-container {
+    max-width: 100%;   /* ocupa toda a largura disponível */
+    overflow-x: auto;  /* ativa o scroll horizontal */
 }
 
 th, td{
     background-color: #7c1527;
-    font-size: 25px;
+    font-size: 20px;
     padding: 10px;
     text-align: center;
     
 }
+
+
 
 @media (max-width:680px){
     header .container, .biocontainer{
@@ -379,6 +386,10 @@ th, td{
         width: 150px;
         margin: 10px;
         border-radius: 5px ;
+    }
+
+    table, th, td{
+        font-size: 15px;
     }
 
 

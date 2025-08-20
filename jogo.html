@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz da Rita Lee</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg,#7c1527,#a57c62);
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    /* Barra fixa */
+    header{
+      position:fixed;
+      top:0; left:0; right:0;
+      background:#7c1527;
+      text-align:center;
+      padding:15px;
+      font-size:3em;
+      font-weight:bold;
+      font-family: "Londrina Shadow", sans-serif;
+      box-shadow:0 4px 8px rgba(0,0,0,.4);
+      z-index:10;
+    }
+
+    .quiz-container{
+      position:relative;
+      top:60px; /* espaço para a barra */
+      background:rgba(0,0,0,0.3);
+      padding:20px;
+      border-radius:10px;
+      max-width:700px;
+      height: auto;
+      width:90%;
+      box-shadow:0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .question{
+      font-size:1.7em;
+      margin-bottom:20px;
+    }
+
+    .options{
+      display:grid;
+      gap:15px;
+    }
+
+    .option{
+      padding:15px;
+      background:#a57c62;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      text-align:left;
+      color:#fff;
+      font-size:1.2em;
+      transition:background 0.3s;
+    }
+
+    .option:hover{
+      background:#7c1527;
+    }
+
+    .score-board{
+      position:fixed;
+      bottom:15px;
+      right:15px;
+      background:#7c1527;
+      padding: 30px 70px;
+      border-radius:8px;
+      font-weight:bold;
+      box-shadow:0 0 8px rgba(0,0,0,0.4);
+    }
+
+    .feedback{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:#000000bb;
+      padding:20px 40px;
+      border-radius:12px;
+      font-size:2em;
+      font-weight:bold;
+      box-shadow:0 0 15px rgba(0,0,0,0.6);
+      animation: fade 1s ease forwards;
+    }
+
+    @keyframes fade{
+      0%{opacity:0; transform:translate(-50%,-50%) scale(0.8);}
+      20%{opacity:1; transform:translate(-50%,-50%) scale(1);}
+      80%{opacity:1;}
+      100%{opacity:0;}
+    }
+
+    #btnvoltar{
+        margin-top:20px;
+        padding:10px 20px;
+        font-size:1.2em;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        background:#7c1527;
+        color:#fff;
+        transition: background 0.3s;
+        position:fixed;
+        bottom:15px;
+        left:15px;
+        }
+
+    #btnvoltar:hover{
+        background-color: #a57c62;
+    }
+
+    .hidden{display:none;}
+  </style>
+</head>
+<body>
+  <header>Quiz da Rita Lee</header>
+
+  <div class="quiz-container" id="quiz">
+    <div class="question" id="question">Carregando...</div>
+    <div class="options" id="options"></div>
+
+    <!-- Feedback com position absolute -->
+    <div class="feedback hidden" id="feedback">Acertou!</div>
+  </div>
+
+  <div class="score-board" id="scoreBoard">Pontos: 0</div>
+
+  <div>
+    <button id="btnvoltar" onclick="voltarSite()">Voltar para o site</button>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Qual foi o álbum lançado em 1975 que marcou a carreira de Rita Lee?",
+        options: ["Fruto Proibido", "Mania de Você", "Build Up", "Refestança"],
+        answer: "Fruto Proibido"
+      },
+      {
+        question: "Em que ano Rita Lee nasceu?",
+        options: ["1940", "1947", "1952", "1960"],
+        answer: "1947"
+      },
+      {
+        question: "Qual música ficou conhecida como hino da rebeldia de Rita Lee?",
+        options: ["Doce Vampiro", "Esse Tal de Roque Enrow", "Ovelha Negra", "Chega Mais"],
+        answer: "Ovelha Negra"
+      },
+      {
+        question: "Qual instrumento Rita Lee foi pioneira entre as mulheres a tocar em shows de rock?",
+        options: ["Bateria", "Teclado", "Guitarra", "Baixo"],
+        answer: "Guitarra"
+      },
+      {
+        question: "Quem foi o grande parceiro musical e amoroso de Rita Lee nos anos 80?",
+        options: ["Caetano Veloso", "Roberto de Carvalho", "Gilberto Gil", "Raul Seixas"],
+        answer: "Roberto de Carvalho"
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const scoreBoard = document.getElementById("scoreBoard");
+    const feedbackEl = document.getElementById("feedback");
+
+    function loadQuestion(){
+      if(current < quizData.length){
+        questionEl.textContent = quizData[current].question;
+        optionsEl.innerHTML = "";
+        quizData[current].options.forEach(opt => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+          btn.className = "option";
+          btn.onclick = () => checkAnswer(opt);
+          optionsEl.appendChild(btn);
+        });
+      }else{
+        endQuiz();
+      }
+    }
+
+    function showFeedback(msg){
+      feedbackEl.textContent = msg;
+      feedbackEl.classList.remove("hidden");
+      setTimeout(() => feedbackEl.classList.add("hidden"), 1000);
+    }
+
+    function checkAnswer(selected){
+      if(selected === quizData[current].answer){
+        score++;
+        scoreBoard.textContent = `Pontos: ${score}`;
+        showFeedback("✔ Acertou!");
+      } else {
+        showFeedback("❌ Errou!");
+      }
+      current++;
+      loadQuestion();
+    }
+
+    function endQuiz(){
+      questionEl.textContent = `Fim do Quiz! Você fez ${score} ponto(s).`;
+      optionsEl.innerHTML = "";
+    }
+
+    function voltarSite() {
+        backBtn = document.getElementById('btnvoltar')
+        backBtn.onclick = () => window.location.href = "index.html";
+}
+
+    loadQuestion();
+  </script>
+</body>
+</html>
